@@ -11,7 +11,7 @@ using System.Data;
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    //[Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -102,7 +102,7 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            var objProductList = _unitOfWork.Company.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objProductList });
         }
 
@@ -121,7 +121,7 @@ namespace BulkyBook.Areas.Admin.Controllers
 
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
-            return Json(new { success = true, message = "Delete Successful" });
+            return Json(new { success = true, message = "Product Deleted Successfully" });
         }
 
         #endregion
