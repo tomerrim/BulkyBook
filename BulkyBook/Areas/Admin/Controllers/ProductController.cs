@@ -70,7 +70,7 @@ namespace BulkyBook.Areas.Admin.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    productVM.Product.ImageUrl = @"images\product" + fileName;
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
 
                 if(productVM.Product.Id == 0)
@@ -78,7 +78,6 @@ namespace BulkyBook.Areas.Admin.Controllers
                 else
                     _unitOfWork.Product.Update(productVM.Product);
 
-                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
