@@ -36,9 +36,14 @@ namespace BulkyBook.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        IEnumerable<T> IRepository<T>.GetAll(string? includeProperties = null)
+        IEnumerable<T> IRepository<T>.GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (filter != null)
+            { 
+                query = query.Where(filter); 
+            }
+
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries))
