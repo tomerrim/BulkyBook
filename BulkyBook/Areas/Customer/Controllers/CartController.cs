@@ -170,7 +170,7 @@ namespace BulkyBook.Areas.Customer.Controllers
                 Session session = service.Get(orderHeader.SessionId);
                 if(session.PaymentStatus.ToLower() == "paid")
                 {
-					_unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
+					_unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId);
                     _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _unitOfWork.Save();
 				}
