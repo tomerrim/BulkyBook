@@ -27,9 +27,7 @@ namespace BulkyBook.DataAccess.Repository
                 productFromDb.ListPrice = product.ListPrice;
                 productFromDb.Price50 = product.Price50;
                 productFromDb.Price100 = product.Price100;
-
-                if(productFromDb.ImageUrl != null)
-                    productFromDb.ImageUrl = product.ImageUrl;
+                productFromDb.ProductImages = product.ProductImages;
             }
         }
     }

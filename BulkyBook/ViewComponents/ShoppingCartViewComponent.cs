@@ -16,7 +16,7 @@ namespace BulkyBook.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var claimIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var claim = claimIdentity?.FindFirst(ClaimTypes.NameIdentifier);
             if(claim != null)
             {
                 if(HttpContext.Session.GetInt32(SD.SessionCart) == null)
